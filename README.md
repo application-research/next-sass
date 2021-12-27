@@ -19,3 +19,15 @@ npm run dev
 ```
 
 Go to `http://localhost:3005` in your browser of choice. Enjoy!
+
+### Scripts
+
+If you need to run node script without running the server, use this example to get started
+
+```sh
+npm run script example
+```
+
+### Contact
+
+If you have questions ping me on Twitter, [@wwwjim](https://www.twitter.com/wwwjim).

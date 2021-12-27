@@ -7,6 +7,8 @@ import * as Utilities from "@common/utilities";
 import App from "@components/App";
 
 function Home(props) {
+  // NOTE(jim):
+  // Fetch example
   React.useEffect(() => {
     async function fetchData() {
       const response = await fetch("/api");
@@ -18,9 +20,11 @@ function Home(props) {
   }, []);
 
   return (
-    <App>
+    <App title="Example" description="This is a website template" url="">
       <div className={styles.center}>
-        <p className={styles.paragraph}>From here, you can start any project you like.</p>
+        <p className={styles.paragraph}>
+          From here, you can start any project you like.
+        </p>
       </div>
     </App>
   );
