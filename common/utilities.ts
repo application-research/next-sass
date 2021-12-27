@@ -49,7 +49,7 @@ export const isEmpty = (text: any): boolean => {
 
 const hasOwn = {}.hasOwnProperty;
 
-export function classNames(): string {
+export function classNames(...args: any[]): string {
   var classes = [];
 
   for (var i = 0; i < arguments.length; i++) {
