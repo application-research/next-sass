@@ -2,9 +2,10 @@
 
 Why would I use this?
 
-* Quickly start a project with TypeScript, SASS, and NextJS.
-* You got tired of using CSS-in-JS.
-* You want to run a quick website.
+- Quickly start a project with TypeScript, SASS, and NextJS.
+- Convenient global CSS reset file.
+- You got tired of using CSS-in-JS.
+- You want to make a website quickly.
 
 ### Setup (MacOS)
 

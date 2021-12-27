@@ -1,8 +1,3 @@
-@font-face {
-  font-family: "Body";
-  src: url("/BodyText-Regular.woff") format("woff");
-}
-
 html,
 body,
 div,
@@ -110,10 +105,11 @@ body {
   --color-background: #000000;
   --color-text: #ffffff;
 
-  font-size: 14px;
+  font-size: 16px;
   background: var(--color-background);
   color: var(--color-text);
-  font-family: -apple-system, BlinkMacSystemFont, helvetica neue, helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, helvetica neue, helvetica,
+    sans-serif;
   scrollbar-width: none;
   -ms-overflow-style: -ms-autohiding-scrollbar;
 
