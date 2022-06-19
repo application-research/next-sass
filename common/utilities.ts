@@ -1,3 +1,5 @@
+const hasOwn = {}.hasOwnProperty;
+
 export const toDateISOString = (data: string): string => {
   const date = new Date(data);
   return date.toLocaleDateString("en-US", {
@@ -46,8 +48,6 @@ export const isEmpty = (text: any): boolean => {
 
   return Boolean(!text.trim());
 };
-
-const hasOwn = {}.hasOwnProperty;
 
 export function classNames(...args: any[]): string {
   var classes = [];

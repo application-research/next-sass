@@ -13,6 +13,9 @@
       ],
       "@pages/*": [
         "./pages/*"
+      ],
+      "@modules/*": [
+        "./modules/*"
       ]
     },
     "target": "es5",
