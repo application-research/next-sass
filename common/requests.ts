@@ -1,9 +1,9 @@
 export async function onRootCall(options = {}) {
-  const response = await fetch("/api", {
-    method: "POST",
+  const response = await fetch('/api', {
+    method: 'POST',
     headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(options),
   });

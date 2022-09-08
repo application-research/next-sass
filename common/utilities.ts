@@ -2,24 +2,24 @@ const hasOwn = {}.hasOwnProperty;
 
 export const toDateISOString = (data: string): string => {
   const date = new Date(data);
-  return date.toLocaleDateString("en-US", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-    year: "numeric",
+  return date.toLocaleDateString('en-US', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
     hour12: true,
-    hour: "numeric",
-    minute: "2-digit",
-    second: "2-digit",
+    hour: 'numeric',
+    minute: '2-digit',
+    second: '2-digit',
   });
 };
 
 export const bytesToSize = (bytes: number, decimals: number = 2): string => {
-  if (bytes === 0) return "0 Bytes";
+  if (bytes === 0) return '0 Bytes';
 
   const k = 1024;
   const dm = decimals < 0 ? 0 : decimals;
-  const sizes = ["B", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB", "ZiB", "YiB"];
+  const sizes = ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
 
   const i = Math.floor(Math.log(bytes) / Math.log(k));
 
@@ -36,7 +36,7 @@ export const isEmpty = (text: any): boolean => {
     return true;
   }
 
-  if (typeof text === "object") {
+  if (typeof text === 'object') {
     return true;
   }
 
@@ -58,7 +58,7 @@ export function classNames(...args: any[]): string {
 
     var argType = typeof arg;
 
-    if (argType === "string" || argType === "number") {
+    if (argType === 'string' || argType === 'number') {
       classes.push(arg);
     } else if (Array.isArray(arg)) {
       if (arg.length) {
@@ -67,7 +67,7 @@ export function classNames(...args: any[]): string {
           classes.push(inner);
         }
       }
-    } else if (argType === "object") {
+    } else if (argType === 'object') {
       if (arg.toString !== Object.prototype.toString) {
         classes.push(arg.toString());
       } else {
@@ -80,5 +80,5 @@ export function classNames(...args: any[]): string {
     }
   }
 
-  return classes.join(" ");
+  return classes.join(' ');
 }

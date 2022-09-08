@@ -1,4 +1,4 @@
-import * as Server from "@common/server";
+import * as Server from '@common/server';
 
 // NOTE(jim):
 // CORS API example.

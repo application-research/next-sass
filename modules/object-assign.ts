@@ -30,7 +30,7 @@ function shouldUseNative() {
     // Detect buggy property enumeration order in older V8 versions.
 
     // https://bugs.chromium.org/p/v8/issues/detail?id=4118
-    var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
+    var test1 = new String('abc'); // eslint-disable-line no-new-wrappers
     // @ts-ignore
     test1[5] = 'de';
     if (Object.getOwnPropertyNames(test1)[0] === '5') {
@@ -54,8 +54,7 @@ function shouldUseNative() {
     'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
       test3[letter] = letter;
     });
-    if (Object.keys(Object.assign({}, test3)).join('') !==
-        'abcdefghijklmnopqrst') {
+    if (Object.keys(Object.assign({}, test3)).join('') !== 'abcdefghijklmnopqrst') {
       return false;
     }
 
@@ -66,31 +65,33 @@ function shouldUseNative() {
   }
 }
 
-const assign = shouldUseNative() ? Object.assign : function (target, source) {
-  var from;
-  var to = toObject(target);
-  var symbols;
+const assign = shouldUseNative()
+  ? Object.assign
+  : function (target, source) {
+      var from;
+      var to = toObject(target);
+      var symbols;
 
-  for (var s = 1; s < arguments.length; s++) {
-    from = Object(arguments[s]);
+      for (var s = 1; s < arguments.length; s++) {
+        from = Object(arguments[s]);
 
-    for (var key in from) {
-      if (hasOwnProperty.call(from, key)) {
-        to[key] = from[key];
-      }
-    }
+        for (var key in from) {
+          if (hasOwnProperty.call(from, key)) {
+            to[key] = from[key];
+          }
+        }
 
-    if (getOwnPropertySymbols) {
-      symbols = getOwnPropertySymbols(from);
-      for (var i = 0; i < symbols.length; i++) {
-        if (propIsEnumerable.call(from, symbols[i])) {
-          to[symbols[i]] = from[symbols[i]];
+        if (getOwnPropertySymbols) {
+          symbols = getOwnPropertySymbols(from);
+          for (var i = 0; i < symbols.length; i++) {
+            if (propIsEnumerable.call(from, symbols[i])) {
+              to[symbols[i]] = from[symbols[i]];
+            }
+          }
         }
       }
-    }
-  }
 
-  return to;
-};
+      return to;
+    };
 
 export default assign;

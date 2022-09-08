@@ -1,8 +1,8 @@
-import styles from "@components/App.module.scss";
+import styles from '@components/App.module.scss';
 
-import Head from "next/head";
+import Head from 'next/head';
 
-import * as React from "react";
+import * as React from 'react';
 
 export default function App(props) {
   return (
