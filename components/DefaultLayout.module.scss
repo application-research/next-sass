@@ -1,0 +1,30 @@
+.body {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+
+.left {
+  width: 100%;
+  min-width: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+}
+
+.right {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 24px;
+  width: 100%;
+  max-width: 288px;
+  align-self: stretch;
+  text-align: center;
+  background: #111111;
+}
