@@ -1,32 +1,31 @@
 const hasOwn = {}.hasOwnProperty;
+const protocolAndDomainRE = /^(?:\w+:)?\/\/(\S+)$/;
+const localhostDomainRE = /^localhost[\:?\d]*(?:[^\:?\d]\S*)?$/;
+const nonLocalhostDomainRE = /^[^\s\.]+\.\S{2,}$/;
 
-export const toDateISOString = (data: string): string => {
+export function toDateISOString(data: string) {
   const date = new Date(data);
   return date.toLocaleDateString('en-US', {
     weekday: 'long',
     day: 'numeric',
     month: 'long',
     year: 'numeric',
-    hour12: true,
-    hour: 'numeric',
-    minute: '2-digit',
-    second: '2-digit',
   });
-};
+}
 
-export const bytesToSize = (bytes: number, decimals: number = 2): string => {
+export function bytesToSize(bytes: number, decimals: number = 2) {
   if (bytes === 0) return '0 Bytes';
 
-  const k = 1024;
+  const k = 1000;
   const dm = decimals < 0 ? 0 : decimals;
-  const sizes = ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
+  const sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 
   const i = Math.floor(Math.log(bytes) / Math.log(k));
 
   return `${(bytes / Math.pow(k, i)).toFixed(dm)} ${sizes[i]}`;
-};
+}
 
-export const isEmpty = (text: any): boolean => {
+export function isEmpty(text: any) {
   // NOTE(jim): If a number gets passed in, it isn't considered empty for zero.
   if (text === 0) {
     return false;
@@ -47,7 +46,74 @@ export const isEmpty = (text: any): boolean => {
   text = text.toString();
 
   return Boolean(!text.trim());
-};
+}
+
+export function createSlug(text: any) {
+  if (isEmpty(text)) {
+    return 'untitled';
+  }
+
+  const a = 'æøåàáäâèéëêìíïîòóöôùúüûñçßÿœæŕśńṕẃǵǹḿǘẍźḧ·/_,:;';
+  const b = 'aoaaaaaeeeeiiiioooouuuuncsyoarsnpwgnmuxzh------';
+  const p = new RegExp(a.split('').join('|'), 'g');
+
+  return text
+    .toString()
+    .toLowerCase()
+    .replace(/\s+/g, '-') // Replace spaces with -
+    .replace(p, (c) => b.charAt(a.indexOf(c))) // Replace special chars
+    .replace(/&/g, '-and-') // Replace & with 'and'
+    .replace(/[^\w\-]+/g, '') // Remove all non-word chars
+    .replace(/\-\-+/g, '-') // Replace multiple - with single -
+    .replace(/^-+/, '') // Trim - from start of text
+    .replace(/-+$/, ''); // Trim - from end of text
+}
+
+export function isUrl(string: any) {
+  if (typeof string !== 'string') {
+    return false;
+  }
+
+  var match = string.match(protocolAndDomainRE);
+  if (!match) {
+    return false;
+  }
+
+  var everythingAfterProtocol = match[1];
+  if (!everythingAfterProtocol) {
+    return false;
+  }
+
+  if (localhostDomainRE.test(everythingAfterProtocol) || nonLocalhostDomainRE.test(everythingAfterProtocol)) {
+    return true;
+  }
+
+  return false;
+}
+
+export function debounce<Args extends unknown[]>(fn: (...args: Args) => void, delay: number) {
+  let timeoutID: number | undefined;
+  let lastArgs: Args | undefined;
+
+  const run = () => {
+    if (lastArgs) {
+      fn(...lastArgs);
+      lastArgs = undefined;
+    }
+  };
+
+  const debounced = (...args: Args) => {
+    clearTimeout(timeoutID);
+    lastArgs = args;
+    timeoutID = window.setTimeout(run, delay);
+  };
+
+  debounced.flush = () => {
+    clearTimeout(timeoutID);
+  };
+
+  return debounced;
+}
 
 export function classNames(...args: any[]): string {
   var classes = [];
