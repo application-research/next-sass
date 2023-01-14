@@ -3,6 +3,12 @@ const protocolAndDomainRE = /^(?:\w+:)?\/\/(\S+)$/;
 const localhostDomainRE = /^localhost[\:?\d]*(?:[^\:?\d]\S*)?$/;
 const nonLocalhostDomainRE = /^[^\s\.]+\.\S{2,}$/;
 
+export const noop = () => {};
+
+export const pluralize = (text, count) => {
+  return count > 1 || count === 0 ? `${text}s` : text;
+};
+
 export function toDateISOString(data: string) {
   const date = new Date(data);
   return date.toLocaleDateString('en-US', {
@@ -12,6 +18,18 @@ export function toDateISOString(data: string) {
     year: 'numeric',
   });
 }
+
+export const elide = (string, length = 140, emptyState = '...') => {
+  if (isEmpty(string)) {
+    return emptyState;
+  }
+
+  if (string.length < length) {
+    return string.trim();
+  }
+
+  return `${string.substring(0, length)}...`;
+};
 
 export function bytesToSize(bytes: number, decimals: number = 2) {
   if (bytes === 0) return '0 Bytes';

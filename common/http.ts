@@ -3,14 +3,14 @@ const REQUEST_HEADERS = {
   'Content-Type': 'application/json',
 };
 
-const getHeaders = () => {
-  return { ...REQUEST_HEADERS, Authorization: `Bearer -` };
+const getHeaders = (key) => {
+  return { ...REQUEST_HEADERS, Authorization: `Bearer ${key}` };
 };
 
-export async function placeholder() {
+export async function placeholder(key) {
   const response = await fetch('/api', {
     method: 'GET',
-    headers: getHeaders(),
+    headers: getHeaders(key),
   });
 
   const json = await response.json();

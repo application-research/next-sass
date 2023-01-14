@@ -1,29 +1,11 @@
-// NOTE(jim)
-// To use file system routing, you must have `page.tsx`.
-import { headers } from 'next/headers';
-
 import DefaultMetaTags from '@components/DefaultMetaTags';
 
-async function makeExampleRequest({ host }) {
-  try {
-    const res = await fetch(`http://${host}/api`);
-    return res.json();
-  } catch (e) {
-    return { text: null, example: null };
-  }
-}
-
-// NOTE(jim):
-// example app/[param]/head.js
-// params: { param: value }
 export default async function Head({ params }) {
-  const currentHeaders = headers();
-  const { text } = await makeExampleRequest({ host: currentHeaders.get('host') });
-
-  const title = text;
+  const title = 'example';
   const description = 'CHANGEME: description for your application using next-sass';
   const url = 'CHANGEME: your-production-url.tld';
 
+  // SUMMARY_LARGE_IMAGE: 1500x785
   return (
     <>
       <title>{title}</title>
