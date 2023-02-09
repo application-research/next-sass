@@ -1,4 +1,4 @@
-import DB from '@common/db';
+import DB from '@data/db';
 
 function print({ address, copy }) {
   console.log(`\x1b[1m\x1b[37m\[${address}\]\x1b[0m : ${copy}`);
