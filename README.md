@@ -1,3 +1,7 @@
+## DEPRECATION NOTICE
+
+This template is no longer up to date. For an updated template, either as a team or individually, we encourage you to explore our [latest template](https://github.com/internet-development/nextjs-sass-starter) produced by [INTDEV](https://internet.dev). Thank you for your interest in our work! 
+
 # NEXT-SASS
 
 Why would I use this?
